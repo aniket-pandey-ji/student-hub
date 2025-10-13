@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Student Hub</title>
+      <link rel="icon" href="favicon.ico" />
+      <link rel="stylesheet" href="style.css" />
+      <meta name="description"
+            content="Student Hub — track attendance, manage projects, share notes and learn together." />
+</head>
+
+<body>
+      <header class="topbar" role="banner">
+            <button id="hamburger" aria-label="Open menu" aria-expanded="true" class="hamburger">
+                  <span class="hamburger-line"></span>
+                  <span class="hamburger-line"></span>
+                  <span class="hamburger-line"></span>
+            </button>
+            <div class="brand" role="img" aria-label="Student Hub logo">
+                  <svg class="brand-logo" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
+                              fill="white" fill-opacity="0.1" />
+                        <path d="M8.5 8C9.32843 8 10 7.32843 10 6.5C10 5.67157 9.32843 5 8.5 5H6V19H8.5V13H15.5V19H18V5H15.5C14.6716 5 14 5.67157 14 6.5C14 7.32843 14.6716 8 15.5 8H8.5ZM8.5 11V8H15.5V11H8.5Z"
+                              fill="white" />
+                  </svg>
+                  <span class="brand-text">Student Hub</span>
+            </div>
+            <nav class="nav-inline" aria-label="Primary navigation">
+                  <ul class="nav-list">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="mindmap.html">MindMap</a></li>
+                        <li><a href="subject.html">Subject</a></li>
+                        <li><a href="attendance.html">Attendance</a></li>
+                        <li><a href="score.html">Score</a></li>
+                  </ul>
+            </nav>
+            <div class="top-actions">
+                  <button id="notifBtn" class="icon-btn" aria-label="Notifications">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                        </svg>
+                        <span class="badge" id="notifBadge">3</span>
+                  </button>
+                  <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                        </svg>
+                  </button>
+                  <a href="login.html" class="login-btn">Login</a>
+            </div>
+      </header>
+
+      <aside id="sidebar" class="sidebar" aria-hidden="true">
+            <div class="sidebar-top">
+                  <div class="brand-small">
+                        <svg class="brand-logo" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
+                                    fill="currentColor" fill-opacity="0.1" />
+                              <path d="M8.5 8C9.32843 8 10 7.32843 10 6.5C10 5.67157 9.32843 5 8.5 5H6V19H8.5V13H15.5V19H18V5H15.5C14.6716 5 14 5.67157 14 6.5C14 7.32843 14.6716 8 15.5 8H8.5ZM8.5 11V8H15.5V11H8.5Z"
+                                    fill="currentColor" />
+                        </svg>
+                        <span>Student Hub</span>
+                  </div>
+                  <button id="closeSidebar" class="close-btn" aria-label="Close menu">✕</button>
+            </div>
+            <ul class="sidebar-nav" role="menu" aria-label="Sidebar menu">
+                  <li role="none"><a role="menuitem" href="index.html">Home</a></li>
+                  <li role="none"><a role="menuitem" href="projects.html">Projects</a></li>
+                  <li role="none"><a role="menuitem" href="courses.html">Courses</a></li>
+                  <li role="none"><a role="menuitem" href="mindmap.html">MindMap</a></li>
+                  <li role="none"><a role="menuitem" href="subject.html">Subject</a></li>
+                  <li role="none"><a role="menuitem" href="attendance.html">Attendance</a></li>
+                  <li role="none"><a role="menuitem" href="score.html">Score</a></li>
+                  <li role="none"><a role="menuitem" href="login.html">Login</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                  <button id="themeToggleSide" class="side-theme">Toggle Theme</button>
+                  <p class="small muted">Trusted by 500+ students</p>
+            </div>
+      </aside>
+
+      <main id="main" role="main">
+            <section class="hero" aria-label="Welcome section">
+                  <div class="hero-inner">
+                        <div class="hero-copy">
+                              <h1>Organize Your<br><span class="accent">Student Life</span></h1>
+                              <p class="lead">All-in-one platform to track attendance, manage projects, save notes, and
+                                    collaborate.</p>
+                              <div class="hero-ctas">
+                                    <a class="btn primary" href="courses.html">Get Started</a>
+                                    <a class="btn ghost" href="#features">Learn More</a>
+                              </div>
+                        </div>
+                  </div>
+            </section>
+
+            <section id="features" class="features" aria-label="Key features">
+                  <h2 class="section-title">What Student Hub Helps You With</h2>
+                  <div class="feature-grid">
+                        <article class="feature-card">
+                              <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                          stroke-width="1.5" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25A1.125 1.125 0 019.75 19.875V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                                    </svg></div>
+                              <h3>Track Progress</h3>
+                              <p>Quick view of scores, history, and attendance percentage — all in one place.</p>
+                        </article>
+                        <article class="feature-card">
+                              <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                          stroke-width="1.5" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3 3 0 013 11.18V11a3 3 0 013-3h1.18a3 3 0 012.82 2.82m0 0c.06.621.246 1.198.495 1.727m-4.522 2.962A3 3 0 013 11.18V11a3 3 0 013-3h1.18a3 3 0 012.82 2.82" />
+                                    </svg></div>
+                              <h3>Collaborate on Projects</h3>
+                              <p>Create teams, assign tasks, set deadlines, and discuss in the built-in chat.</p>
+                        </article>
+                        <article class="feature-card">
+                              <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                          stroke-width="1.5" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                                    </svg></div>
+                              <h3>Organized Notes</h3>
+                              <p>Upload PDFs, store links, and tag notes by subject for fast retrieval.</p>
+                        </article>
+                        <article class="feature-card">
+                              <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                          stroke-width="1.5" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M16.5 18.75h-9a9.75 9.75 0 011.056-4.265 3.75 3.75 0 015.888 0A9.75 9.75 0 0116.5 18.75zM12 12.75a3.75 3.75 0 110-7.5 3.75 3.75 0 010 7.5zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg></div>
+                              <h3>Gamification</h3>
+                              <p>Earn badges and points for consistency and project contributions.</p>
+                        </article>
+                  </div>
+            </section>
+
+            <section class="notice-board" aria-label="College Notices">
+                  <h2 class="section-title">Notice Board</h2>
+                  <div class="notice-card">
+                        <div class="notice-header">
+
+                        </div>
+                  </div>
+            </section>
+
+            <section class="dashboard-sample" aria-label="Dashboard preview">
+                  <h2 class="section-title">Personalized Dashboard</h2>
+                  <div class="dashboard-grid">
+                        <div class="card">
+                              <div class="card-header">
+                                    <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                          fill="currentColor">
+                                          <path fill-rule="evenodd"
+                                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                                clip-rule="evenodd" />
+                                    </svg>
+                                    <h4>Upcoming Deadlines</h4>
+                              </div>
+                              <ul class="deadline-list">
+                                    <li>Project A <span>due Oct 12</span></li>
+                                    <li>Assignment: DS <span>due Oct 15</span></li>
+                                    <li>Quiz: Maths <span>due Oct 18</span></li>
+                              </ul>
+                        </div>
+                        <div class="card card-attendance">
+                              <div class="card-header">
+                                    <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                          fill="currentColor">
+                                          <path
+                                                d="M2 10a8 8 0 1116 0 8 8 0 01-16 0zm10-2.5a.5.5 0 00-1 0V10a.5.5 0 00.5.5h2.5a.5.5 0 000-1H12V7.5z" />
+                                    </svg>
+                                    <h4>Attendance</h4>
+                              </div>
+                              <div class="progress-circle" style="--value:75;">
+                                    <span class="progress-value">75%</span>
+                              </div>
+                              <p class="muted">this semester</p>
+                        </div>
+                        <div class="card">
+                              <div class="card-header">
+                                    <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                          fill="currentColor">
+                                          <path
+                                                d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+                                    </svg>
+                                    <h4>Recent Scores</h4>
+                              </div>
+                              <p class="muted">View detailed progress graph in your full dashboard.</p>
+                              <a href="dashboard.html" class="btn primary small">Open Dashboard</a>
+                        </div>
+                  </div>
+            </section>
+
+            <section class="Student Subjects & Courses" aria-label="Student Subjects & Courses">
+                  <h2 class="section-title">Student Subjects & Courses</h2>
+                  <div class="subject-grid">
+                        <a href="it-tools.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                              </svg>
+                              <h3>IT Tools & Fundamental</h3>
+                        </a>
+                        <a href="mathematics.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                              </svg>
+                              <h3>Mathematics</h3>
+                        </a>
+                        <a href="c-programming.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                              </svg>
+                              <h3>C Programming</h3>
+                        </a>
+                        <a href="functional-english.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M3 5h12M9 3v2m4 13-4-4-4 4M19 17v.01" />
+                              </svg>
+                              <h3>Functional English</h3>
+                        </a>
+                        <a href="Accounting-and-Financial-Management.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 3h.008v.008H8.25v-.008Zm0 3h.008v.008H8.25v-.008Zm3-6h.008v.008H11.25v-.008Zm0 3h.008v.008H11.25v-.008Zm0 3h.008v.008H11.25v-.008Zm3-6h.008v.008H14.25v-.008Zm0 3h.008v.008H14.25v-.008Zm0 3h.008v.008H14.25v-.008ZM6 21a2.25 2.25 0 0 1-2.25-2.25V5.25A2.25 2.25 0 0 1 6 3h12a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 18 21H6Z" />
+                              </svg>
+                              <h3>Accounting and Financial Management</h3>
+                        </a>
+                        <a href="oop-cpp.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                              </svg>
+                              <h3>Object Oriented Programming & C++</h3>
+                        </a>
+                        <a href="software-engineering.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M11.42 15.17L17.25 21A2.652 2.652 0 0 0 21 17.25l-5.83-5.83M11.42 15.17l.017-.017L15.17 11.42l5.83 5.83c.53.53.53 1.39 0 1.92l-1.92 1.92c-.53.53-1.39.53-1.92 0l-5.83-5.83Z M3 8.25a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3 8.25h.008v.008H3V8.25Z" />
+                              </svg>
+                              <h3>Software Engineering</h3>
+                        </a>
+                        <a href="coa.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M4.26 10.147a60.436 60.436 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.905 59.905 0 0 1 12 3.493a59.902 59.902 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                              </svg>
+                              <h3>Computer Organization and Architecture</h3>
+                        </a>
+                        <a href="digital-circuit-design.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 21v-1.5M12 4.5v15m-3.75 0V4.5m-3.75 0v15m11.25 0V4.5m3.75 0v15M4.5 8.25v.008H4.5V8.25zm0 3.75v.008H4.5v-.008zm0 3.75v.008H4.5v-.008zm15 0v.008h-.008v-.008h.008zm0-3.75v.008h-.008v-.008h.008zm0-3.75v.008h-.008v-.008h.008ZM8.25 4.5h.008V4.5H8.25zm3.75 0h.008V4.5h-.008zm3.75 0h.008V4.5h-.008z" />
+                              </svg>
+                              <h3>Digital Circuit and Logic Design</h3>
+                        </a>
+                        <a href="dbms.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+                              </svg>
+                              <h3>Introduction to Database Management System</h3>
+                        </a>
+                        <a href="java-programming.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                              </svg>
+                              <h3>Internet and JAVA Programming</h3>
+                        </a>
+                        <a href="oracle-plsql.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M5.25 14.25v-2.625a3.375 3.375 0 0 1 3.375-3.375h6.75a3.375 3.375 0 0 1 3.375 3.375v2.625a3.375 3.375 0 0 1-3.375 3.375h-6.75a3.375 3.375 0 0 1-3.375-3.375Z M14.25 8.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-6.75a3.375 3.375 0 0 0-3.375 3.375v2.625a3.375 3.375 0 0 0 3.375 3.375h6.75a3.375 3.375 0 0 0 3.375-3.375Z" />
+                              </svg>
+                              <h3>ORACLE and PL/SQL</h3>
+                        </a>
+                        <a href="computer-networks.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M2.25 15.75a2.25 2.25 0 0 1-2.25-2.25V6.75A2.25 2.25 0 0 1 2.25 4.5h10.563a4.5 4.5 0 0 1 8.35 1.954 4.5 4.5 0 0 1-1.92 8.046H2.25Z" />
+                              </svg>
+                              <h3>Computer Networks</h3>
+                        </a>
+                        <a href="spm.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+                              </svg>
+                              <h3>Software Project Management</h3>
+                        </a>
+                        <a href="network-security.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z" />
+                              </svg>
+                              <h3>Advance Networks and Network Security</h3>
+                        </a>
+                        <a href="web-dev-tools.html" class="subject-card">
+                              <svg class="subject-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="m6.75 7.5 3 2.25-3 2.25m3 0h3M11.25 7.5v6M16.5 7.5l-3 2.25 3 2.25M6.75 21A6.75 6.75 0 0 1 0 14.25v-4.5A6.75 6.75 0 0 1 6.75 3h10.5A6.75 6.75 0 0 1 24 9.75v4.5A6.75 6.75 0 0 1 17.25 21H6.75Z" />
+                              </svg>
+                              <h3>Web Development Tools and Techniques</h3>
+                        </a>
+
+                  </div>
+            </section>
+
+            <section class="testimonials" aria-label="Testimonials">
+
+                  <h4 class="section-title">Students Says</h4>
+                  <div class="test-grid">
+                        <blockquote>
+                              <p>"Student Hub made organizing my notes and group projects so much easier."</p>
+                              <footer>— Anjali, BCA</footer>
+                        </blockquote>
+                        <blockquote>
+                              <p>"Attendance tracker and reminders saved me from missing deadlines."</p>
+                              <footer>— Rohit, FY</footer>
+                        </blockquote>
+                  </div>
+            </section>
+
+            <section class="final-cta">
+                  <h3>Ready to level up your studies?</h3>
+                  <p>Start organizing your semester in minutes — it’s completely free.</p>
+                  <a class="btn primary large" href="signup.html">Create an account — it's free</a>
+            </section>
+      </main>
+
+      <footer class="site-footer" role="contentinfo">
+            <div class="footer-inner">
+                  <p>© 2025 Student Hub • Built by Aniket Pandey </p>
+                  <p><small class="muted">Made with focus on accessibility and mobile-first performance.</small></p>
+            </div>
+      </footer>
+
+      <script>
+            // --- Active nav highlighting ---
+            (function () {
+                  const path = location.pathname.split("/").pop() || 'index.html';
+                  document.querySelectorAll('.nav-list a, .sidebar-nav a').forEach(a => {
+                        if (a.getAttribute('href') === path) {
+                              a.classList.add('active');
+                        }
+                  });
+            })();
+
+            // --- Element Declarations (Declare once) ---
+            const hamburger = document.getElementById('hamburger');
+            const sidebar = document.getElementById('sidebar');
+            const closeSidebar = document.getElementById('closeSidebar');
+            const main = document.getElementById('main');
+            const themeToggle = document.getElementById('themeToggle');
+            const themeSide = document.getElementById('themeToggleSide');
+            const root = document.documentElement;
+            const notifBtn = document.getElementById('notifBtn');
+            const notifBadge = document.getElementById('notifBadge');
+
+            // --- Sidebar Toggle Logic ---
+            function openSidebar() {
+                  sidebar.classList.add('open');
+                  sidebar.setAttribute('aria-hidden', 'false');
+                  hamburger.setAttribute('aria-expanded', 'true');
+                  document.body.classList.add('no-scroll');
+            }
+
+            function closeSide() {
+                  sidebar.classList.remove('open');
+                  sidebar.setAttribute('aria-hidden', 'true');
+                  hamburger.setAttribute('aria-expanded', 'false');
+                  document.body.classList.remove('no-scroll');
+            }
+
+            hamburger.addEventListener('click', openSidebar);
+            closeSidebar.addEventListener('click', closeSide);
+            main.addEventListener('click', () => {
+                  if (sidebar.classList.contains('open')) closeSide();
+            });
+
+            // --- Theme Toggle Logic ---
+            function setTheme(theme) {
+                  if (theme === 'dark') {
+                        root.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('sh_theme', 'dark');
+                  } else {
+                        root.setAttribute('data-theme', 'light');
+                        localStorage.setItem('sh_theme', 'light');
+                  }
+            }
+
+            const savedTheme = localStorage.getItem('sh_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            setTheme(savedTheme);
+
+            function handleThemeToggle() {
+                  const currentTheme = root.getAttribute('data-theme');
+                  setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            }
+
+            themeToggle.addEventListener('click', handleThemeToggle);
+            if (themeSide) {
+                  themeSide.addEventListener('click', handleThemeToggle);
+            }
+
+            // --- Notification Demo ---
+            notifBtn.addEventListener('click', () => {
+                  notifBadge.style.display = 'none';
+            });
+      </script>
+</body>
+
+</html>

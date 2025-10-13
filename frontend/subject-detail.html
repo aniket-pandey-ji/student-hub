@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Subject Details - Student Hub</title>
+      <link rel="icon" href="favicon.ico" />
+      <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+      <header class="topbar" role="banner">
+            <button id="hamburger" aria-label="Open menu" aria-expanded="false" class="hamburger">
+                  <span class="hamburger-line"></span>
+                  <span class="hamburger-line"></span>
+                  <span class="hamburger-line"></span>
+            </button>
+            <div class="brand" role="img" aria-label="Student Hub logo">
+                  <svg class="brand-logo" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
+                              fill="white" fill-opacity="0.1" />
+                        <path d="M8.5 8C9.32843 8 10 7.32843 10 6.5C10 5.67157 9.32843 5 8.5 5H6V19H8.5V13H15.5V19H18V5H15.5C14.6716 5 14 5.67157 14 6.5C14 7.32843 14.6716 8 15.5 8H8.5ZM8.5 11V8H15.5V11H8.5Z"
+                              fill="white" />
+                  </svg>
+                  <span class="brand-text">Student Hub</span>
+            </div>
+            <nav class="nav-inline" aria-label="Primary navigation">
+                  <ul class="nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="subjects.html" class="active">My Subjects</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="attendance.html">Attendance</a></li>
+                  </ul>
+            </nav>
+            <div class="top-actions">
+                  <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                        </svg>
+                  </button>
+                  <a href="login.html" class="login-btn" id="logout-btn-header">Logout</a>
+            </div>
+      </header>
+
+      <main id="main" role="main">
+            <div class="page-header">
+                  <h1 id="subject-title">Loading Subject...</h1>
+                  <p id="subject-description" class="muted"></p>
+            </div>
+
+            <div class="card add-note-form">
+                  <h3>Add a New Note</h3>
+                  <form id="note-form">
+                        <div class="form-group">
+                              <label for="note-title">Note Title</label>
+                              <input type="text" id="note-title" placeholder="e.g., Chapter 1 Summary" required>
+                        </div>
+                        <div class="form-group">
+                              <label for="note-content">Content</label>
+                              <textarea id="note-content" placeholder="Write your notes here..." rows="4"
+                                    required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary">Add Note</button>
+                  </form>
+            </div>
+
+            <h2 class="section-title">Your Notes for this Subject</h2>
+            <div id="notes-list" class="notes-grid">
+                  <p class="muted">Loading notes...</p>
+            </div>
+      </main>
+
+      <footer class="site-footer" role="contentinfo">
+            <div class="footer-inner">
+                  <p>© 2025 Student Hub • Built by Aniket Pandey</p>
+                  <p><small class="muted">Made with focus on accessibility and mobile-first performance.</small></p>
+            </div>
+      </footer>
+
+      <script>
+            document.addEventListener('DOMContentLoaded', async () => {
+                  // Set theme from localStorage
+                  const savedTheme = localStorage.getItem('sh_theme') || 'light';
+                  document.documentElement.setAttribute('data-theme', savedTheme);
+
+                  const token = localStorage.getItem('token');
+                  if (!token) {
+                        window.location.href = 'login.html';
+                        return;
+                  }
+
+                  const urlParams = new URLSearchParams(window.location.search);
+                  const subjectId = urlParams.get('id');
+                  if (!subjectId) {
+                        alert('No subject selected.');
+                        window.location.href = 'subjects.html';
+                        return;
+                  }
+
+                  const subjectTitle = document.getElementById('subject-title');
+                  const subjectDescription = document.getElementById('subject-description');
+                  const notesList = document.getElementById('notes-list');
+                  const noteForm = document.getElementById('note-form');
+
+                  const loadSubjectData = async () => {
+                        try {
+                              // Fetch subject details
+                              const subjectRes = await fetch(`http://localhost:3000/api/subjects/${subjectId}`, {
+                                    headers: { 'Authorization': `Bearer ${token}` }
+                              });
+                              if (!subjectRes.ok) throw new Error('Could not fetch subject details.');
+                              const subject = await subjectRes.json();
+                              subjectTitle.textContent = subject.name;
+                              subjectDescription.textContent = subject.description || 'No description provided.';
+
+                              // Fetch notes for this subject
+                              const notesRes = await fetch(`http://localhost:3000/api/subjects/${subjectId}/notes`, {
+                                    headers: { 'Authorization': `Bearer ${token}` }
+                              });
+                              if (!notesRes.ok) throw new Error('Could not fetch notes.');
+                              const notes = await notesRes.json();
+
+                              notesList.innerHTML = '';
+                              if (notes.length === 0) {
+                                    notesList.innerHTML = '<p class="muted" style="text-align: center;">You have not added any notes for this subject yet.</p>';
+                              } else {
+                                    notes.forEach(note => {
+                                          const noteCard = document.createElement('div');
+                                          noteCard.className = 'note-card';
+                                          noteCard.innerHTML = `
+                                <h4>${note.title}</h4>
+                                <p>${note.content.replace(/\n/g, '<br>')}</p> 
+                                <div class="note-footer">
+                                    <small>Created: ${new Date(note.createdAt).toLocaleDateString()}</small>
+                                </div>
+                            `;
+                                          notesList.appendChild(noteCard);
+                                    });
+                              }
+                        } catch (error) {
+                              console.error('Data loading error:', error);
+                              localStorage.removeItem('token');
+                              window.location.href = 'login.html';
+                        }
+                  };
+
+                  noteForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const title = document.getElementById('note-title').value;
+                        const content = document.getElementById('note-content').value;
+
+                        await fetch('http://localhost:3000/api/notes', {
+                              method: 'POST',
+                              headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                              },
+                              body: JSON.stringify({ title, content, subjectId })
+                        });
+
+                        noteForm.reset();
+                        loadSubjectData();
+                  });
+
+                  // Universal Logout Handler
+                  const logoutHandler = () => {
+                        localStorage.removeItem('token');
+                        alert('You have been logged out.');
+                        window.location.href = 'index.html';
+                  };
+
+                  document.getElementById('logout-btn-header').addEventListener('click', logoutHandler);
+
+                  // Universal Theme Toggle
+                  const themeToggle = document.getElementById('themeToggle');
+                  if (themeToggle) {
+                        themeToggle.addEventListener('click', () => {
+                              const currentTheme = document.documentElement.getAttribute('data-theme');
+                              const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                              document.documentElement.setAttribute('data-theme', newTheme);
+                              localStorage.setItem('sh_theme', newTheme);
+                        });
+                  }
+
+                  // Initial data load
+                  loadSubjectData();
+            });
+      </script>
+</body>
+
+</html>

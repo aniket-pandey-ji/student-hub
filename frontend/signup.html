@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Sign Up - Student Hub</title>
+      <link rel="icon" href="favicon.ico" />
+      <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<div class="auth-container">
+      <div class="auth-form-wrapper">
+
+            <div class="auth-header">
+                  <a href="index.html" aria-label="Go to Homepage">
+                        <svg class="brand-logo" width="60" height="60" viewBox="0 0 24 24" fill="none"
+                              xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z"
+                                    fill="currentColor" fill-opacity="0.1" />
+                              <path d="M8.5 8C9.32843 8 10 7.32843 10 6.5C10 5.67157 9.32843 5 8.5 5H6V19H8.5V13H15.5V19H18V5H15.5C14.6716 5 14 5.67157 14 6.5C14 7.32843 14.6716 8 15.5 8H8.5ZM8.5 11V8H15.5V11H8.5Z"
+                                    fill="currentColor" />
+                        </svg>
+                  </a>
+                  <h2>Create Your Account</h2>
+                  <p class="muted">Join Student Hub today. It's free and always will be.</p>
+            </div>
+
+            <form class="auth-form">
+                  <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Create a password" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password"
+                              placeholder="Confirm your password" required>
+                  </div>
+                  <button type="submit" class="btn primary full-width">Sign Up</button>
+            </form>
+
+            <div class="auth-footer">
+                  <p>Already have an account? <a href="login.html">Sign In</a></p>
+            </div>
+
+      </div>
+</div>
+      <script>
+                  const savedTheme = localStorage.getItem('sh_theme') || 'light';
+                  document.documentElement.setAttribute('data-theme', savedTheme);
+      </script>
+      
+      <script>
+             const signupForm = document.querySelector('.auth-form');
+      
+                  signupForm.addEventListener('submit', async (event) => {
+                   event.preventDefault(); // Page ko reload hone se rokne ke liye
+
+             // Form se data collect karein
+             const fullname = document.getElementById('fullname').value;
+             const email = document.getElementById('email').value;
+             const password = document.getElementById('password').value;
+             const confirmPassword = document.getElementById('confirm-password').value;
+
+             // Simple validation
+             if (password !== confirmPassword) {
+                   alert("Passwords do not match!");
+             return;
+                      }
+
+             // Server par bhejne ke liye data object banayein
+             const userData = {
+                   fullname: fullname,
+             email: email,
+             password: password
+                      };
+
+             // 'Fetch' API ka istemal karke data server par bhejein
+             try {
+                        const response = await fetch('http://localhost:3000/api/register', {
+                   method: 'POST',
+             headers: {
+                   'Content-Type': 'application/json'
+                              },
+             body: JSON.stringify(userData)
+                          });
+
+             const result = await response.json();
+
+             if (response.ok) {
+                   alert(result.message); // "User registered successfully!"
+             window.location.href = 'login.html'; // Safal hone par login page par bhej dein
+                          } else {
+                   alert('Error: ' + result.message);
+                          }
+                      } catch (error) {
+                   console.error('Failed to connect to the server:', error);
+             alert('Could not connect to the server. Please try again later.');
+                      }
+                  });
+      </script>
+      </body>
+      
+      </html>
