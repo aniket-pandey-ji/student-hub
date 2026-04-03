@@ -1,5 +1,4 @@
-// --- 1. Imports ---
-// Sabhi zaroori packages ko import karein
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
