@@ -305,3 +305,14 @@ app.post('/api/notes', protect, async (req, res) => {
 app.listen(PORT, () => {
     console.log(`🚀 Backend server is running on http://localhost:${PORT} `);
 });
+
+
+{
+  "version": 2,
+  "builds": [
+    { "src": "server.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "server.js" }
+  ]
+}
