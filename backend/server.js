@@ -97,13 +97,24 @@ app.post('/api/login', async (req, res) => {
 // Dashboard
 app.get('/api/dashboard-data', protect, async (req, res) => {
     try {
+        const subjects = await Subject.find({ user: req.user.id }).select('name _id').lean();
+        const subjectLinks = subjects.map((subject) => ({
+            name: subject.name,
+            link: `subject-detail.html?id=${subject._id}`
+        }));
+
         res.status(200).json({
             fullname: req.user.fullname,
             attendance: 82,
             deadlines: [
                 { title: 'Project Submission', date: 'Oct 15' },
                 { title: 'Maths Quiz', date: 'Oct 18' },
-            ]
+            ],
+            subjects: subjectLinks,
+            curriculum: subjectLinks.map((subject) => ({
+                ...subject,
+                iconPath: 'M12 14.25c1.037 0 1.875-.84 1.875-1.875S13.037 10.5 12 10.5s-1.875.84-1.875 1.875S10.963 14.25 12 14.25z M6.75 19.5h10.5a1.5 1.5 0 001.5-1.5v-12a1.5 1.5 0 00-1.5-1.5H6.75a1.5 1.5 0 00-1.5 1.5v12a1.5 1.5 0 001.5 1.5z'
+            }))
         });
     } catch (error) {
         res.status(500).json({ message: "Server error." });
