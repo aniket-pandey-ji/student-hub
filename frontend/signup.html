@@ -62,6 +62,7 @@
       
       <script>
              const signupForm = document.querySelector('.auth-form');
+             const API_BASE_URL = localStorage.getItem('api_base_url') || 'http://localhost:3000';
       
                   signupForm.addEventListener('submit', async (event) => {
                    event.preventDefault(); // Page ko reload hone se rokne ke liye
@@ -87,7 +88,7 @@
 
              // 'Fetch' API ka istemal karke data server par bhejein
              try {
-                        const response = await fetch('http://localhost:3000/api/register', {
+                        const response = await fetch(`${API_BASE_URL}/api/register`, {
                    method: 'POST',
              headers: {
                    'Content-Type': 'application/json'

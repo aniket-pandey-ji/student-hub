@@ -52,6 +52,7 @@
             document.documentElement.setAttribute('data-theme', savedTheme);
          
             const loginForm = document.querySelector('.auth-form');
+            const API_BASE_URL = localStorage.getItem('api_base_url') || 'http://localhost:3000';
 
             loginForm.addEventListener('submit', async (event) => {
                               event.preventDefault(); // Prevent page reload
@@ -62,7 +63,7 @@
                         const userData = {email, password};
 
                         try {
-                    const response = await fetch('https:backend-jsjsmxjrb-aniket-pandey-jis-projects.vercel.app' , {
+                    const response = await fetch(`${API_BASE_URL}/api/login` , {
                               method: 'POST',
                         headers: {
                               'Content-Type': 'application/json'
