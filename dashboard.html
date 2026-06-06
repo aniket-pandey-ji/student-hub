@@ -213,6 +213,7 @@
                         console.error('Dashboard Error:', error.message);
                         alert(`Session expired. Please log in again.`);
                         localStorage.removeItem('token');
+
                         window.location.href = 'login.html';
                   }
             });
