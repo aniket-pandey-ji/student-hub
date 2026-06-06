@@ -7,7 +7,7 @@
 
 ## 🌐 Live Demo
 
-[View Student Hub →](https://student-hub-jet.vercel.app)
+[View Student Hub →](https://student-hub-inky.vercel.app/)
 
 ## 🚀 Features
 
