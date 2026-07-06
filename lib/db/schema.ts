@@ -124,3 +124,14 @@ export const scores = pgTable("scores", {
   date: timestamp("date").notNull().defaultNow(),
   createdAt: timestamp("createdAt").notNull().defaultNow(),
 })
+
+export const resources = pgTable("resources", {
+  id: serial("id").primaryKey(),
+  userId: text("userId").notNull(),
+  subjectId: integer("subjectId"),
+  title: text("title").notNull(),
+  url: text("url").notNull(),
+  description: text("description").notNull().default(""),
+  type: text("type").notNull().default("link"),
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+})
