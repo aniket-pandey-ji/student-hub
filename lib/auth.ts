@@ -15,6 +15,9 @@ const trustedOrigins = [
   process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : undefined,
+  // v0 preview iframe + Vercel deployment domains (wildcards supported by Better Auth)
+  "https://*.vusercontent.net",
+  "https://*.vercel.app",
   process.env.NODE_ENV === "development" ? "http://localhost:3000" : undefined,
   process.env.NODE_ENV === "development" ? "http://localhost:3001" : undefined,
 ].filter(Boolean) as string[]
