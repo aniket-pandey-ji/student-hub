@@ -5,7 +5,6 @@ import {
   boolean,
   integer,
   serial,
-  real,
 } from "drizzle-orm/pg-core"
 
 /* ----------------------------- Better Auth ----------------------------- */
@@ -89,8 +88,8 @@ export const projects = pgTable("projects", {
   userId: text("userId").notNull(),
   title: text("title").notNull(),
   description: text("description").notNull().default(""),
-  team: text("team").notNull().default(""),
-  status: text("status").notNull().default("active"),
+  members: text("members").default(""),
+  status: text("status").notNull().default("planning"),
   progress: integer("progress").notNull().default(0),
   dueDate: timestamp("dueDate"),
   createdAt: timestamp("createdAt").notNull().defaultNow(),
@@ -119,9 +118,9 @@ export const scores = pgTable("scores", {
   userId: text("userId").notNull(),
   subjectId: integer("subjectId").notNull(),
   title: text("title").notNull(),
-  category: text("category").notNull().default("exam"),
-  score: real("score").notNull(),
-  maxScore: real("maxScore").notNull().default(100),
-  weight: real("weight").notNull().default(1),
+  score: integer("score").notNull().default(0),
+  maxScore: integer("maxScore").notNull().default(100),
+  weight: integer("weight").notNull().default(1),
+  date: timestamp("date").notNull().defaultNow(),
   createdAt: timestamp("createdAt").notNull().defaultNow(),
 })
