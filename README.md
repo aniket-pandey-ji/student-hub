@@ -133,4 +133,4 @@ MIT License — free to use, modify, and distribute.
 ---
 
 > Built with 💜 by **Aniket Pandey** — BCA Student @ DDU Gorakhpur University
-> *"Trusted by 500+ students"*
+
